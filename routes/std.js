@@ -71,9 +71,9 @@ router.post("/test", (req, res) => {
 // Route: /run
 router.post("/run", (req, res) => {
     const code = req.body.code;
-    const task = req.body.task;
+    const taskStr = req.body.task ? req.body.task.toString() : -1;
 
-    const folderPath = path.join(__dirname, "../tasks", task);
+    const folderPath = path.join(__dirname, "../tasks", taskStr);
 
     if (!fs.existsSync(folderPath)) {
         fs.mkdirSync(folderPath, { recursive: true });
